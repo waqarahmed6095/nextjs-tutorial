@@ -136,6 +136,7 @@ export async function fetchInvoicesPages(query: string) {
 
     const totalPages = Math.ceil(Number(data[0].count) / ITEMS_PER_PAGE);
     return totalPages;
+
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch total number of invoices.');
@@ -153,7 +154,7 @@ export async function fetchInvoiceById(id: string) {
       FROM invoices
       WHERE invoices.id = ${id};
     `;
-
+    
     const invoice = data.map((invoice) => ({
       ...invoice,
       // Convert amount from cents to dollars
